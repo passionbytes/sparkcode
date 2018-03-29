@@ -1,0 +1,4 @@
+val names =  sc.textFile("file:///Users/ravishankarnair/sparkcode/data/babynames.csv")
+val rows = names.map(line => line.split(","))
+//row(2) indicates "County" in babynames.csv
+rows.map(row =>row(2)).distinct.count

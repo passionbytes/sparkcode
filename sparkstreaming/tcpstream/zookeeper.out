@@ -1,0 +1,39 @@
+2018-03-14 01:44:37,335 [myid:] - INFO  [main:QuorumPeerConfig@101] - Reading configuration from: /Users/ravishankarnair/lib/zookeeper-3.4.5-cdh5.4.5/bin/../conf/zoo.cfg
+2018-03-14 01:44:37,339 [myid:] - INFO  [main:DatadirCleanupManager@78] - autopurge.snapRetainCount set to 3
+2018-03-14 01:44:37,339 [myid:] - INFO  [main:DatadirCleanupManager@79] - autopurge.purgeInterval set to 0
+2018-03-14 01:44:37,339 [myid:] - INFO  [main:DatadirCleanupManager@101] - Purge task is not scheduled.
+2018-03-14 01:44:37,340 [myid:] - WARN  [main:QuorumPeerMain@118] - Either no config or no quorum defined in config, running  in standalone mode
+2018-03-14 01:44:37,352 [myid:] - INFO  [main:QuorumPeerConfig@101] - Reading configuration from: /Users/ravishankarnair/lib/zookeeper-3.4.5-cdh5.4.5/bin/../conf/zoo.cfg
+2018-03-14 01:44:37,352 [myid:] - INFO  [main:ZooKeeperServerMain@100] - Starting server
+2018-03-14 01:44:37,360 [myid:] - INFO  [main:Environment@100] - Server environment:zookeeper.version=3.4.5-cdh5.4.5--1, built on 08/12/2015 21:04 GMT
+2018-03-14 01:44:37,360 [myid:] - INFO  [main:Environment@100] - Server environment:host.name=10.0.0.251
+2018-03-14 01:44:37,360 [myid:] - INFO  [main:Environment@100] - Server environment:java.version=1.8.0_162
+2018-03-14 01:44:37,360 [myid:] - INFO  [main:Environment@100] - Server environment:java.vendor=Oracle Corporation
+2018-03-14 01:44:37,361 [myid:] - INFO  [main:Environment@100] - Server environment:java.home=/Library/Java/JavaVirtualMachines/jdk1.8.0_162.jdk/Contents/Home/jre
+2018-03-14 01:44:37,361 [myid:] - INFO  [main:Environment@100] - Server environment:java.class.path=/Users/ravishankarnair/lib/zookeeper-3.4.5-cdh5.4.5/bin/../build/classes:/Users/ravishankarnair/lib/zookeeper-3.4.5-cdh5.4.5/bin/../build/lib/*.jar:/Users/ravishankarnair/lib/zookeeper-3.4.5-cdh5.4.5/bin/../share/zookeeper/zookeeper-3.4.5-cdh5.4.5.jar:/Users/ravishankarnair/lib/zookeeper-3.4.5-cdh5.4.5/bin/../share/zookeeper/slf4j-log4j12-1.7.5.jar:/Users/ravishankarnair/lib/zookeeper-3.4.5-cdh5.4.5/bin/../share/zookeeper/slf4j-api-1.7.5.jar:/Users/ravishankarnair/lib/zookeeper-3.4.5-cdh5.4.5/bin/../share/zookeeper/netty-3.2.2.Final.jar:/Users/ravishankarnair/lib/zookeeper-3.4.5-cdh5.4.5/bin/../share/zookeeper/log4j-1.2.16.jar:/Users/ravishankarnair/lib/zookeeper-3.4.5-cdh5.4.5/bin/../share/zookeeper/jline-2.11.jar:/Users/ravishankarnair/lib/zookeeper-3.4.5-cdh5.4.5/bin/../src/java/lib/*.jar:/Users/ravishankarnair/lib/zookeeper-3.4.5-cdh5.4.5/bin/../conf:
+2018-03-14 01:44:37,361 [myid:] - INFO  [main:Environment@100] - Server environment:java.library.path=/Users/ravishankarnair/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+2018-03-14 01:44:37,361 [myid:] - INFO  [main:Environment@100] - Server environment:java.io.tmpdir=/var/folders/9t/n22sg_nx559_x47lx75x_04w0000gn/T/
+2018-03-14 01:44:37,361 [myid:] - INFO  [main:Environment@100] - Server environment:java.compiler=<NA>
+2018-03-14 01:44:37,362 [myid:] - INFO  [main:Environment@100] - Server environment:os.name=Mac OS X
+2018-03-14 01:44:37,362 [myid:] - INFO  [main:Environment@100] - Server environment:os.arch=x86_64
+2018-03-14 01:44:37,362 [myid:] - INFO  [main:Environment@100] - Server environment:os.version=10.13.3
+2018-03-14 01:44:37,362 [myid:] - INFO  [main:Environment@100] - Server environment:user.name=ravishankarnair
+2018-03-14 01:44:37,363 [myid:] - INFO  [main:Environment@100] - Server environment:user.home=/Users/ravishankarnair
+2018-03-14 01:44:37,363 [myid:] - INFO  [main:Environment@100] - Server environment:user.dir=/Users/ravishankarnair/sparkcode/sparkstreaming/tcpstream
+2018-03-14 01:44:37,373 [myid:] - INFO  [main:ZooKeeperServer@726] - tickTime set to 2000
+2018-03-14 01:44:37,373 [myid:] - INFO  [main:ZooKeeperServer@735] - minSessionTimeout set to -1
+2018-03-14 01:44:37,373 [myid:] - INFO  [main:ZooKeeperServer@744] - maxSessionTimeout set to -1
+2018-03-14 01:44:37,396 [myid:] - INFO  [main:NIOServerCnxnFactory@94] - binding to port 0.0.0.0/0.0.0.0:2181
+2018-03-14 01:44:37,411 [myid:] - INFO  [main:FileTxnSnapLog@273] - Snapshotting: 0x0 to /tmp/zookeeper/version-2/snapshot.0
+2018-03-14 01:44:44,207 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@197] - Accepted socket connection from /127.0.0.1:65308
+2018-03-14 01:44:44,217 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@839] - Client attempting to establish new session at /127.0.0.1:65308
+2018-03-14 01:44:44,219 [myid:] - INFO  [SyncThread:0:FileTxnLog@199] - Creating new log file: log.1
+2018-03-14 01:44:44,230 [myid:] - INFO  [SyncThread:0:ZooKeeperServer@595] - Established session 0x1622309f3280000 with negotiated timeout 6000 for client /127.0.0.1:65308
+2018-03-14 01:44:44,266 [myid:] - INFO  [ProcessThread(sid:0 cport:-1)::PrepRequestProcessor@645] - Got user-level KeeperException when processing sessionid:0x1622309f3280000 type:create cxid:0x5 zxid:0x3 txntype:-1 reqpath:n/a Error Path:/brokers Error:KeeperErrorCode = NoNode for /brokers
+2018-03-14 01:44:44,276 [myid:] - INFO  [ProcessThread(sid:0 cport:-1)::PrepRequestProcessor@645] - Got user-level KeeperException when processing sessionid:0x1622309f3280000 type:create cxid:0xb zxid:0x7 txntype:-1 reqpath:n/a Error Path:/config Error:KeeperErrorCode = NoNode for /config
+2018-03-14 01:44:44,285 [myid:] - INFO  [ProcessThread(sid:0 cport:-1)::PrepRequestProcessor@645] - Got user-level KeeperException when processing sessionid:0x1622309f3280000 type:create cxid:0x13 zxid:0xc txntype:-1 reqpath:n/a Error Path:/admin Error:KeeperErrorCode = NoNode for /admin
+2018-03-14 01:44:44,324 [myid:] - INFO  [ProcessThread(sid:0 cport:-1)::PrepRequestProcessor@645] - Got user-level KeeperException when processing sessionid:0x1622309f3280000 type:create cxid:0x1b zxid:0x11 txntype:-1 reqpath:n/a Error Path:/cluster Error:KeeperErrorCode = NoNode for /cluster
+2018-03-14 01:44:44,625 [myid:] - INFO  [ProcessThread(sid:0 cport:-1)::PrepRequestProcessor@645] - Got user-level KeeperException when processing sessionid:0x1622309f3280000 type:setData cxid:0x25 zxid:0x15 txntype:-1 reqpath:n/a Error Path:/controller_epoch Error:KeeperErrorCode = NoNode for /controller_epoch
+2018-03-14 01:44:44,686 [myid:] - INFO  [ProcessThread(sid:0 cport:-1)::PrepRequestProcessor@645] - Got user-level KeeperException when processing sessionid:0x1622309f3280000 type:delete cxid:0x36 zxid:0x17 txntype:-1 reqpath:n/a Error Path:/admin/preferred_replica_election Error:KeeperErrorCode = NoNode for /admin/preferred_replica_election
+2018-03-14 01:44:44,757 [myid:] - INFO  [ProcessThread(sid:0 cport:-1)::PrepRequestProcessor@645] - Got user-level KeeperException when processing sessionid:0x1622309f3280000 type:create cxid:0x41 zxid:0x18 txntype:-1 reqpath:n/a Error Path:/brokers Error:KeeperErrorCode = NodeExists for /brokers
+2018-03-14 01:44:44,758 [myid:] - INFO  [ProcessThread(sid:0 cport:-1)::PrepRequestProcessor@645] - Got user-level KeeperException when processing sessionid:0x1622309f3280000 type:create cxid:0x42 zxid:0x19 txntype:-1 reqpath:n/a Error Path:/brokers/ids Error:KeeperErrorCode = NodeExists for /brokers/ids

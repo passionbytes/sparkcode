@@ -1,0 +1,18 @@
+int plusOne(int x)
+{
+  return x+1;
+}
+
+//Above function written in Java will always give same answer for plusOne(5). Hence plusOne(5) can be replaced with 6.
+
+//Consider below : Referentially opaque. i.e NOT referentially transparent
+
+int g =10;//Note its a global variable, anyone can change the value
+
+int plusG(int x)
+{
+  return x+ g;
+}
+
+//If we call plusG(5), result depends on value of g, which can be ste with any v//alue by anyone. Hence plusG is not referentially transaparent
+

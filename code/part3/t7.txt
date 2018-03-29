@@ -1,0 +1,38 @@
+import org.apache.spark.sql._
+
+def maxReferrals(source_df: DataFrame): DataFrame = {
+    val rootFiltered_df = source_df
+      .filter("referred_by <> 0 ")
+      .select("member_id", "name", "referred_by")
+    val referrers = source_df
+      .select("member_id", "name")
+      .withColumnRenamed("member_id", "referer_id")
+      .withColumnRenamed("name", "referred_by_name")
+
+    val refJoined_df = rootFiltered_df
+      .join(referrers, rootFiltered_df("referred_by") === referrers("referer_id"))
+      .drop("referer_id")
+
+    val refferedGroups_df = refJoined_df
+      .groupBy("referred_by_name")
+      .agg(count("*").alias("no_of_people_referred"))
+      .select("referred_by_name", "no_of_people_referred")
+      .sort(desc("no_of_people_referred"))
+      .toDF()
+
+    refferedGroups_df
+}
+
+
+
+
+val data_df = spark.read.
+option("header", "true").
+option("inferSchema", "true").
+csv("file:///Users/ravishankarnair/sparkcode/data/passionpeople.csv")
+
+val source_df = data_df.toDF(data_df.columns.map(x => x.trim): _*).cache
+
+val max_referral: DataFrame = maxReferrals(source_df)
+    println("Number of referral by members: ")
+max_referral.show(500)

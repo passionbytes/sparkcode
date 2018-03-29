@@ -1,0 +1,3 @@
+sed -e "s/^A/ /" kv1.txt >> kv2.txt
+
+( For typing ^A , press CTRL key followed by V and A )

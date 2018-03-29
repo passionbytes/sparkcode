@@ -1,0 +1,17 @@
+sc.hadoopConfiguration.set("textinputformat.record.delimiter",",")
+
+val names =  sc.textFile("file:///Users/ravishankarnair/sparkcode/data/babynames.csv")
+
+names.count
+
+names.first //You will see only year!!
+
+names.take(10)
+
+/* Output will be 10 string tokens including newline
+
+Array[String] =
+Array(Year, First Name, County, Sex, Count
+2013, GAVIN, ST LAWRENCE, M, 9
+2013, LEVI)
+*/

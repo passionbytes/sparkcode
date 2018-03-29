@@ -1,0 +1,20 @@
+{
+  "companyname": "PassionBytes",
+  "companyzip": 32256,
+  "companyemail": "contactus@passionbytes.com",
+  "secretaries": ["sec1@passionbytes.com", "sec2@passionbytes.com"],
+  "cabins": [
+    {
+      "address": "cabin1",
+      "extension": 4567
+    },
+    {
+      "address": "cabin2",
+      "extension": 9451
+    }
+  ],
+  "contact": {
+    "phone": "(904) 868-9001",
+    "address": "STE 105, Baymeadows Way, Jacksonville"
+  }
+}

@@ -1,0 +1,28 @@
+val data_df = spark.read.
+option("header", "true").
+option("inferSchema", "true").
+csv("file:///Users/ravishankarnair/sparkcode/data/passionpeople.csv")
+val source_df = data_df.toDF(data_df.columns.map(x => x.trim): _*).cache
+
+val ip_occurBy3octets = source_df.
+       select("ip_address").
+       withColumn("octet3", concat(substring_index(col("ip_address"), ".", 3), lit(".x"))).
+       filter("octet3 <> '.x'").
+       groupBy("octet3").
+       agg(count("*").
+       alias("occurrence")).
+       sort(desc("occurrence")).toDF()
+
+ip_occurBy3octets.collect().foreach(println)
+//If you want by ONE OCTET 
+
+val ip_occurBy1octet = source_df.
+       select("ip_address").
+       withColumn("octet1", concat(substring_index(col("ip_address"), ".", 1), lit(".x"))).
+       filter("octet1 <> '.x'").
+       groupBy("octet1").
+       agg(count("*").
+       alias("occurrence")).
+       sort(desc("occurrence")).toDF()
+
+ip_occurBy1octet.collect().foreach(println)

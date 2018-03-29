@@ -1,0 +1,33 @@
+import org.apache.spark.sql._
+var passion_df = spark.read.
+format("jdbc").
+option("url", "jdbc:mysql://localhost:3306/retail_db").
+option("driver" ,"com.mysql.jdbc.Driver").
+option("user", "retail_dba").
+option("password", "cloudera").
+option("dbtable", "departments").
+option("partitionColumn", "department_id").
+option("lowerBound", "1").
+option("upperBound", "10").
+option("numPartitions", "4").
+load()
+import org.apache.spark.sql.Row
+import org.apache.spark.sql.SparkSession
+val warehouseLocation ="/user/hive/warehouse"
+
+val spark = SparkSession.builder().appName("Spark Hive Example").config("spark.sql.warehouse.dir", warehouseLocation).enableHiveSupport().getOrCreate()
+passion_df.show(20)
+
+passion_df.write.saveAsTable("default.mine") //Default parquet
+
+passion_df.write.format("orc").saveAsTable("default.mineorc") //ORC
+val newdf = spark.sql("select * from default.mineorc")
+newdf.show(5)
+
+val dffromparquet = spark.sql("select * from default.mine")
+
+val dffromorc  = spark.sql("select * from default.mineorc")
+//OTHER WAY
+passion_df.createOrReplaceTempView("myview")
+
+spark.sql("create table my_table1 as select * from myview");

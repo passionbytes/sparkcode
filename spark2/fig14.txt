@@ -1,0 +1,4 @@
+val  fightData2015 = spark.read
+   .option("inferSchema", "true")
+   .option("header", "true")
+   .csv("file:///Users/ravishankarnair/sparkcode/data/2015-summary.csv")

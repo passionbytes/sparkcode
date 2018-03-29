@@ -1,0 +1,36 @@
+//STep 1: Add SerDe jar
+
+add jar /Users/ravishankarnair/lib/apache-hive-1.2.1-bin/hcatalog/share/hcatalog/hive-hcatalog-core-1.2.1.jar
+
+CREATE TABLE emp(employees array<struct<
+name:string,
+email:string,
+salary:string
+>>
+)
+ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
+STORED AS TEXTFILE;
+
+//Assume emp.json is as follows
+//{"name":"Scott", "email":"scott@passionbytes.com", "salary": 3000}
+{"employees": [{"name":"Scott", "email":"scott@passionbytes.com", "salary":"2000"},{"name":"Ravi", "email":"ravi@passionbytes.com", "salary" : "1000"},{"name":"Tiger", "email":"tiger@passionbytes.com", "salary": "3000"} ]}
+
+//Load data
+
+load data local inpath '/Users/ravishankarnair/sparkcode/data/employees1.json' into table emp;
+
+//select
+
+select * from emp;
+select employees from emp;
+select employees[0].name from emp; 
+Use powerful function called explode for getting all values
+select explode(employees.name) as mycol from emp; 
+
+FUN!!
+
+select reflect("java.lang.Math", "max", 2, 3); 
+
+select 1+1;
+
+

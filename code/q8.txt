@@ -1,0 +1,8 @@
+val names =  sc.textFile("file:///Users/ravishankarnair/sparkcode/data/babynames.csv")
+val rows = names.map(line => line.split(","))
+val jacksonrows = rows.filter(row => row(1).contains("JACKSON"))
+//Find distinct counties for which there were more than 10 occurrences of "JACKS//ON" for a given year
+jacksonrows.filter(row => row(4).toInt > 10).map(row => row(2)).distinct.count
+
+
+

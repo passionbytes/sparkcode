@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+
+<!-- ======================================================================= -->
+<!-- MQ to Kafka build file  created by Ravi Shankar Nair 12072017       -->
+<!-- ======================================================================= -->
+
+<project name="MqKafka-RS" default="build" basedir=".">
+
+ 
+ 
+  <path id="classpath">
+    <pathelement location="${basedir}\classes" />
+      <fileset dir="${basedir}\lib">
+      <include name="**/*.jar"/>
+    </fileset>
+  </path>
+
+  <target name="init">
+    <tstamp>
+      <format property="today" pattern="ddMMyy"/>
+      <format property="timestamp" pattern="dd/MM/yy - hh:mm:ss"/>
+    </tstamp>
+    <mkdir dir="${basedir}\classes"/>
+    <mkdir dir="${basedir}\lib"/>
+    <mkdir dir="${basedir}\dist"/>
+  </target>
+
+  <target name="build" depends="init">
+    <javac srcdir="${basedir}\src" destdir="${basedir}\classes" debug="on" deprecation="off" >
+	  <classpath refid="classpath"/>
+	  <include name="**\*.java"/>
+    </javac>
+
+    <copy todir="${basedir}\classes">
+    	<fileset dir="${basedir}\src" includes="**\*.xml"/>
+        <fileset dir="${basedir}\src" includes="**\*.xls"/>
+        <fileset dir="${basedir}\src" includes="**\*.drl"/>
+        <fileset dir="${basedir}\src" includes="**\*.properties"/>
+    </copy>
+	
+     
+     <jar jarfile="${basedir}\dist\mqkafka.jar" basedir="${basedir}\classes" >
+        <include name="**\*.class"/>
+	<include name="**\*.xml"/>
+        <include name="**\*.xls"/>
+        <include name="**\*.drl"/>
+        <include name="**\*.properties"/>
+    </jar>
+  </target>
+
+  <target name="clean">
+	<delete includeEmptyDirs="true">
+	<fileset dir="${basedir}\classes" includes="**\*"/>
+        <fileset dir="${basedir}\dist" includes="**\*"/>
+       
+	</delete>
+        <delete dir="${basedir}\classes" />
+<delete dir="${basedir}\dist" />
+  </target>
+
+  <target name="zip" depends="init">
+    <zip zipfile="${basedir}\attic\Percipient-mqkafka-${today}.zip">
+        <fileset dir="${basedir}" includes="src\**\*"/>
+        <fileset dir="${basedir}" includes="*"/>
+        <fileset dir="${basedir}" includes="test\**\*"/>
+    </zip>
+  </target>
+
+  
+   <target name="doIt" depends="build">
+        <java classname="com.passion.MQStreaming" fork="yes">
+            			<classpath>
+    			<pathelement location="${basedir}\dist\mqkafka.jar" />
+    	     <fileset dir="${basedir}\lib">
+                  <include name="**/*.jar"/>
+                 </fileset>
+     		</classpath>
+    		</java>
+  </target>
+
+</project>
+

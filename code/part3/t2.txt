@@ -1,0 +1,5 @@
+val data_df = spark.read.
+option("header", "true").
+option("inferSchema", "true").
+csv("file:///Users/ravishankarnair/sparkcode/data/passionpeople.csv")
+val source_df = data_df.toDF(data_df.columns.map(x => x.trim): _*).cache

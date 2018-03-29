@@ -1,0 +1,6 @@
+mvn package 
+//After that:
+spark-submit --class com.passion.PassionTwitter --driver-java-options='-Dcom.sun.net.ssl.checkRevocation=false' --master local[*] target/myspark-0.1.0.jar
+
+--consumerKey kEQDb90oROABtzix5hAvLw  --consumerSecret EzzcDNOZsH1dFYObRqHXVOy4JCD7MFyMYTRtiUrAlOM   --accessToken 158483808-ko5RWuMKfSqWBWyFFoah1rGjxPa0XNYJLtaMFlYN      --accessTokenSecret 6miV8B5xEr2slhwmgQWHERaXR1TykeXwu5dJFyvUpfo
+

@@ -1,0 +1,4 @@
+val rows = names.map(line => line.split(","))
+rows.map(row=>row(2)).filter(row => row.contains("NEW YORK")).count
+
+rows.map(row=>row(2)).filter(row => row.contains("KINGS")).count

@@ -1,0 +1,56 @@
+//Step 1: Add SerDe jar
+
+add jar /Users/ravishankarnair/lib/apache-hive-1.2.1-bin/hcatalog/share/hcatalog/hive-hcatalog-core-1.2.1.jar
+
+CREATE TABLE company(
+companyname string,
+companyzip int,
+companyemail string,
+secretaries array<string>,
+cabins  array<struct<
+address:string,
+extension:int
+>>,
+contact map<string,string>
+
+)
+ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
+STORED AS TEXTFILE;
+//Sample Data:
+
+{
+  "companyname": "PassionBytes",
+  "comapnyzip": 32256,
+  "companyemail": "contactus@passionbytes.com",
+  "secretaries": ["sec1@passionbytes.com", "sec2@passionbytes.com"],
+  "cabins": [
+    {
+      "address": "cabin1",
+      "extension": 4567
+    },
+    {
+      "address": "cabin2",
+      "extension": 9451
+    }
+  ],
+  "contact": {
+    "phone": "(904) 868-9001",
+    "address": "STE 105, Baymeadows Way, Jacksonville"
+  }
+}
+
+
+//Load data: PLEASE NOTE THAT HIVE NEEDS JSON IN A SINGLE LINE> USE UNIX COMMAND to convert multiline json to single line as follows:
+//cat multilinejsonfile.json | tr -d '\n' > company.json
+
+load data local inpath '/Users/ravishankarnair/sparkcode/data/company.json' into table company;
+
+//select
+
+select companyname from company;
+select explode(secretaries) from company;
+select explode(cabins) from company;
+select explode(cabins.extension) from company;
+select explode(contact) from company;
+select contact['phone'] from company;
+

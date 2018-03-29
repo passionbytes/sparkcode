@@ -1,0 +1,31 @@
+import org.apache.spark.sql.Row
+import org.apache.spark.sql.SparkSession
+val warehouseLocation ="/user/hive/warehouse"
+
+val spark = SparkSession.builder().appName("Spark Hive Example").config("spark.sql.warehouse.dir", warehouseLocation).enableHiveSupport().getOrCreate()
+
+
+import org.apache.spark.sql._
+var passion_df = spark.read.
+format("jdbc").
+option("url", "jdbc:mysql://localhost:3307/policies").
+option("driver" ,"com.mysql.jdbc.Driver").
+option("user", "root").
+option("password", "root").
+option("dbtable", "insurancedetails").
+load()
+passion_df.show(20)
+
+passion_df.write.saveAsTable("default.mine") //Default parquet
+
+passion_df.write.format("orc").saveAsTable("default.mineorc") //ORC
+val newdf = spark.sql("select * from default.mineorc")
+newdf.show(5)
+
+val dffromparquet = spark.sql("select * from default.mine")
+
+val dffromorc  = spark.sql("select * from default.mineorc")
+//OTHER WAY
+passion_df.createOrReplaceTempView("myview")
+
+passion_df.write.format("orc").saveAsTable("default.mineorc")spark.sql("create table my_table1 as select * from myview");

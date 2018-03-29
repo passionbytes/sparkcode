@@ -1,0 +1,40 @@
+import org.apache.spark.sql._
+def getMostFrequentBday(source_df: DataFrame): List[Int] = {
+    // Find the most frequent birthday
+    val bday_dayGrp = source_df
+      .filter("bday_day >= 1 AND bday_day <= 31 AND bday_month >= 1 AND bday_month <= 12 AND bday_year > 0") // Filter out invalid values
+      .groupBy("bday_day")
+      .agg(count("*").alias("count_bday_day"))
+      .select("bday_day", "count_bday_day")
+      .cache
+
+    val maxCountBday = bday_dayGrp
+      .agg(max("count_bday_day").alias("mostFrequentBday"))
+      .collect
+      .head.get(0).toString
+
+    val mostFrequentBday = bday_dayGrp
+      .filter("count_bday_day = " + maxCountBday) // This is because there can be multiple dates having the same count
+      .select("bday_day")
+      .toDF()
+      .collect()
+    val asScalaList = mostFrequentBday.map(x => x.getAs[Int]("bday_day")).toList
+
+    bday_dayGrp.unpersist
+    asScalaList
+}
+
+
+
+
+val data_df = spark.read.
+option("header", "true").
+option("inferSchema", "true").
+csv("file:///Users/ravishankarnair/sparkcode/data/passionpeople.csv")
+
+val source_df = data_df.toDF(data_df.columns.map(x => x.trim): _*).cache
+
+val mostFrequentBday: List[Int] = getMostFrequentBday(source_df)
+println("Most birthdays are on: " + mostFrequentBday.mkString(",") + " day(s)")
+
+

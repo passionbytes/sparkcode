@@ -1,0 +1,13 @@
+
+//Create with simple string
+create table xml_sample(str string);
+
+//Load json data
+load data local inpath '/Users/ravishankarnair/sparkcode/data/employees.xml' into table xml_sample;
+
+//Test it
+select * from xml_sample;
+
+//Apply XPATH functions as below
+select xpath(str,'employees/*/name/text()') from xml_sample;
+select xpath(str,'employees/*/*/text()') from xml_sample;

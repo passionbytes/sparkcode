@@ -1,0 +1,7 @@
+mvn package 
+//After that: For Scala code
+spark-submit --class com.passion.TotalBabies --master local[*] target/myspark-0.1.0.jar
+
+//For Java code
+
+spark-submit --class com.passion.CountJacksons --master local[*] target/myspark-0.1.0.jar

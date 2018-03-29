@@ -1,0 +1,15 @@
+val inputRDD = sc.textFile("file:///Users/ravishankarnair/sparkcode/data/population.csv")
+
+val header = inputRDD.first
+
+val rows = inputRDD.filter(row => row != header)
+
+val statewithpop = rows.map(line => line.split(",")).map(row => (row(2), row(4).toInt)).partitionBy(new org.apache.spark.HashPartitioner(10))
+
+val statewithtotalpop = statewithpop.reduceByKey((x,y) => x + y)
+
+statewithtotalpop.take(5)
+
+statewithtotalpop.saveAsTextFile("file:///Users/ravishankarnair/sparkcode/data/result")
+
+//Now check the directory to see all the hash paritions

@@ -1,0 +1,15 @@
+val inputRDD = sc.textFile("file:///Users/ravishankarnair/sparkcode/data/countycensusdata.csv")
+
+val header = inputRDD.first
+
+val rows = inputRDD.filter(row => row != header)
+
+val countywithpopmap = rows.map(line => line.split(",")).map(row => (row(0).toInt, row(3).toInt))
+
+val countywithpoppartitions = countywithpopmap.partitionBy(new org.apache.spark.RangePartitioner(5, countywithpopmap))
+
+countywithpoppartitions.take(5)
+
+countywithpopparitions.saveAsTextFile("file:///Users/ravishankarnair/sparkcode/data/rangeresult")
+
+//Now check the directory to see all the range  paritions

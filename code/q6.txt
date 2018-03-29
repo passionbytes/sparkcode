@@ -1,0 +1,4 @@
+val rows = names.map(line => line.split(","))
+val jacksonrows = rows.filter(row => row(1).contains("JACKSON"))
+//row(4) is COUNT
+jacksonrows.filter(row => row(4).toInt > 10).count

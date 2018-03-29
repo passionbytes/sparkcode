@@ -1,0 +1,31 @@
+1) Start Demo ( Hadoop, Hive etc) Demostart.sh
+
+2) Run SparkR. Make sure R is installed
+
+3) Check whether SPARK_HOME is defined from prompt:
+
+Sys.getenv("SPARK_HOME")
+
+You must see result
+
+If not, you can define by
+
+if (nchar(Sys.getenv("SPARK_HOME")) < 1) {
+  Sys.setenv(SPARK_HOME = "/home/spark")
+}
+
+4) Initialize library
+
+library(SparkR, lib.loc = c(file.path(Sys.getenv("SPARK_HOME"), "R", "lib")))
+sparkR.session(master = "local[*]", sparkConfig = list(spark.driver.memory = "2g"))
+
+5) Write first code by leveraging R dataset
+
+df <- as.DataFrame(faithful)
+
+head(df)
+
+6) Thats it
+
+
+

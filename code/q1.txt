@@ -1,0 +1,9 @@
+//Skipping header in textFile method. spark.read has an option in 2.x to specify
+//header=true while reading. This is applicable for only textFile
+val names =  sc.textFile("file:///Users/ravishankarnair/sparkcode/data/babynames.csv")
+names.first
+
+val header = names.first
+val nameswoheader = names.filter(row => row != header)
+
+nameswoheader.first

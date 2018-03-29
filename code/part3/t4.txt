@@ -1,0 +1,20 @@
+val data_df = spark.read.
+option("header", "true").
+option("inferSchema", "true").
+csv("file:///Users/ravishankarnair/sparkcode/data/passionpeople.csv")
+
+val source_df = data_df.toDF(data_df.columns.map(x => x.trim): _*).cache
+    val classCip_df = source_df.
+      select("ip_address").
+      withColumn("octet1", split(col("ip_address"), "\\.")(0)).
+      filter($"octet1" >= 192 && $"octet1" <= 223).
+      withColumn("ipClassC", concat(col("octet1"), lit(".x.x.x"))).
+      groupBy("ipClassC").
+      agg(count("*").alias("count_octet1")).
+      sort(desc("count_octet1")).toDF()
+
+
+//PRINT THE RESULT
+
+
+classCip_df.collect().foreach(println)

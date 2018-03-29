@@ -1,0 +1,7 @@
+val names =  sc.textFile("file:///Users/ravishankarnair/sparkcode/data/babynames.csv")
+val header = names.first
+val rowswoheader = names.filter(row =>  row != header)
+
+val rows = names.map(line => line.split(","))
+val totalcount = rowswoheader.map(row => row(4).toInt).sum.toInt
+

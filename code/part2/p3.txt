@@ -1,0 +1,40 @@
+//FIrst write the CustomPartitioner class
+
+class PassionVowelPartitioner(numParts: Int) extends org.apache.spark.Partitioner {
+ override def numPartitions: Int = numParts
+ override def getPartition(key: Any): Int =
+ {
+       def initial :Char = key.toString.toUpperCase.charAt(0)
+       if(initial == 'A' || initial == 'E' ||initial == 'I' || initial == 'O' ||initial == 'U'){
+    0
+ }else{
+    1
+}
+}
+ 
+ override def equals(passion: Any): Boolean = passion match
+ {
+ case test: PassionVowelPartitioner =>
+ test.numPartitions == numPartitions
+ case _ =>
+ false
+ }
+}
+
+//Now use it in a Spark code
+
+
+val inputRDD = sc.textFile("file:///Users/ravishankarnair/sparkcode/data/2015-summary.csv")
+
+val header = inputRDD.first
+
+val rows = inputRDD.filter(row => row != header)
+
+val ordecountmap = rows.map(line => line.split(",")).map(row => (row(0)+":"+row(1), row(2)))
+
+val ordecountmapwithpartitions = ordecountmap.partitionBy(new PassionVowelPartitioner(2))
+
+ordecountmapwithpartitions.saveAsTextFile("file:///Users/ravishankarnair/sparkcode/data/resultcustom");
+
+
+

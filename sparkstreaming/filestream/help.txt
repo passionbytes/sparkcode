@@ -1,0 +1,5 @@
+mvn package 
+//After that:
+spark-submit --class com.passion.PassionStreaming --driver-java-options='-Dlog4j.configuration=file:///Users/ravishankarnair/sparkcode/sparkstreaming/filestream/log4j.properties' --master yarn target/passionsparkstreaming-0.1.0.jar /Users/ravishankarnair/data/exp
+
+--driver-java-options "-Dlog4j.configuration=file:///local/home/.../log4j.properties" 

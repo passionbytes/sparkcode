@@ -1,0 +1,27 @@
+val creditcardData = sc.sequenceFile[ccnumber, FavShops]("hdfs://passion/creditcarddatafile.txt").persist()
+
+def findSimilarity(fileName: String) {
+    val transactionsData = sc.sequenceFile[ccnumber, VisitedShops](fileName)
+    val joined = creditcardData.join(transactions)
+ // Aove line creates an RDD of (ccnumber, (Favshops, VisitedShops))
+    // find the no.of shops that the credit card user swiped the card
+    //  in shops which are not in the favourite shops
+    val offShopsVisited = joined.filter {
+        case (ccnumber, (FavShops, VisitedShops)) => !FavShops.shops..contains(VisitedShops.shops)
+    }.count()
+    println("No. of visits to non-favorite shops: " + offShopsVisited)
+}
+
+
+
+//Fix
+
+val creditcardData = sc.sequenceFile[ccnumber, FavShops]("hdfs://passion/creditcarddatafile.txt").persist()
+
+CHANGE THE ABOVE LINE TO:
+
+val creditcardData = sc.sequenceFile[ccnumber, FavShops]("hdfs://passion/creditcarddatafile.txt")
+.partitionBy(new HashPartitioner(100))// CREATE 100 PARTITIONS
+.persist()
+
+

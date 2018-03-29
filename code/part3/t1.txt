@@ -1,0 +1,8 @@
+val data_df = spark.read.
+option("header", "true").
+option("inferSchema", "true").
+csv("file:///Users/ravishankarnair/sparkcode/data/passionpeople.csv")
+
+//Second step
+
+data_df.columns

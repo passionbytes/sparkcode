@@ -1,0 +1,35 @@
+import org.apache.spark.sql._
+
+def getLeastFrequentBmonth(source_df: DataFrame): List[Int] = {
+    // Find the least frequent birth month
+    val bday_monthGrp = source_df
+      .filter("bday_day >= 1 AND bday_day <= 31 AND bday_month >= 1 AND bday_month <= 12 AND bday_year > 0") // Filter out invalid values
+      .groupBy("bday_month")
+      .agg(count("*").alias("count_bday_month"))
+      .select("bday_month", "count_bday_month")
+      .cache
+
+    val minCountBmonth = bday_monthGrp
+      .agg(min("count_bday_month").alias("leastFrequentBmonth"))
+      .collect
+      .head.get(0).toString
+
+    val leastFrequentBmonth = bday_monthGrp
+      .filter("count_bday_month = " + minCountBmonth) // This is because there can be multiple dates having the same count
+      .select("bday_month")
+      .collect()
+    val asScalaList = leastFrequentBmonth.map(x => x.getAs[Int]("bday_month")).toList
+    bday_monthGrp.unpersist
+    asScalaList
+}
+
+val data_df = spark.read.
+option("header", "true").
+option("inferSchema", "true").
+csv("file:///Users/ravishankarnair/sparkcode/data/passionpeople.csv")
+
+val source_df = data_df.toDF(data_df.columns.map(x => x.trim): _*).cache
+
+ val leastFrequentBmonth: List[Int] = getLeastFrequentBmonth(source_df)
+ println("Least birthdays are on: " + leastFrequentBmonth.mkString(",") + " month(s)")
+

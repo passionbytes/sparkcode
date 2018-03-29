@@ -1,0 +1,12 @@
+
+//Create with simple string
+create table json_sample(str string);
+
+//Load json data
+load data local inpath '/Users/ravishankarnair/sparkcode/data/employees.json' into table json_sample;
+
+//Test it
+select * from json_sample;
+
+//Apply JSON functions as below
+select get_json_object(json_sample.str,'$.name') as ename, get_json_object(str,'$.email') as email ,get_json_object(str,'$.salary') as salary from json_sample;
